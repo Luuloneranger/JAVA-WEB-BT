@@ -31,11 +31,14 @@ public class Profile extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("text/html");
+
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 		if (session != null) {
 			String name = (String) session.getAttribute("name");
-			out.print("Chào bạn, " + name + " đến với trang quản lý tài khoản");
+			out.println("Chào bạn, " + name + " đến với trang quản lý tài khoản");
+			out.println("<form action = 'Logout' method = 'GET'> <input type=\"submit\" value=\"Logout\" /> </form> ");
 		} else {
 			out.print("Xin vui lòng đăng nhập");
 			response.sendRedirect("/HelloWorld/loginSession.html");
