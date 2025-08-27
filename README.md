@@ -14,6 +14,7 @@ DataBase có bảng [User_2] gồm 4 thuộc tính :
 + username.
 + fullname.
 + password.
+
 Project thực hiện bắt đầu từ file login.inđex ( trong thư mục webapp).
 Người xem có thể tạo Database mới có tên LapTrinhWeb_ChieuT3_Tuan2 và bảng [User_2] với 4 thuộc tính để test project.
 
