@@ -137,6 +137,10 @@ body {
 			</div>
 			<button type="submit" class="login-button">Đăng nhập</button>
 		</form>
+
+		<p style="margin-top: 20px">
+			Bạn chưa có tài khoản? <a href="register.jsp">Đăng ký ngay</a>
+		</p>
 	</div>
 
 </body>

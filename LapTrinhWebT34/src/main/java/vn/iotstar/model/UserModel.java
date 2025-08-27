@@ -7,14 +7,13 @@ public class UserModel implements Serializable{
 	private String userName;
 	private String fullName;
 	private String passWord;
-	private int Roleid;
 	
 	
 	public UserModel() {
 		super();
 	}
 	
-	public UserModel(int id, String roleid, String userName, String fullName, String passWord) {
+	public UserModel(int id, String userName, String fullName, String passWord) {
 		super();
 		this.id = id;
 		this.userName = userName;
