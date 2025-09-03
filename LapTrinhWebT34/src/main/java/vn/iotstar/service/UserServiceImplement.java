@@ -1,5 +1,7 @@
 package vn.iotstar.service;
 
+import java.util.List;
+
 import vn.iotstar.dao.UserDao;
 import vn.iotstar.model.UserModel;
 import vn.iotstar.dao.UserDaoImpl;
@@ -41,5 +43,27 @@ public class UserServiceImplement implements UserService {
 	@Override
 	public boolean chekcExistUsername(String username) {
 		return userDao.checkExistUsername(username);
+	}
+
+
+	@Override
+	public void edit(UserModel user) {
+		UserModel oldUser = userDao.get(user.getUserName());
+		oldUser.setFullName(user.getFullName());
+		oldUser.setPassWord(user.getPassWord());
+		userDao.edit(oldUser);
+		
+	}
+
+
+	@Override
+	public void delete(String username) {
+		userDao.delete( username);
+	}
+
+
+	@Override
+	public List<UserModel> getall() {
+		return userDao.getall();
 	}
 }

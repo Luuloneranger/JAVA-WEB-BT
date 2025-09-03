@@ -1,14 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@taglib prefix="fmt" uri="jakarta.tags.fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Trang chủ</title>
+<!-- Font Awesome để dùng icon -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+.top-right {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+}
+
+.btn {
+	background: #007bff;
+	color: #fff;
+	border: none;
+	padding: 8px 15px;
+	margin-left: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.btn:hover {
+	background: #0056b3;
+}
+
+.welcome {
+	margin-top: 80px;
+	text-align: center;
+	font-size: 20px;
+}
+</style>
 </head>
 <body>
-	<p>
-		Hello User!
-	</p>
+
+	<div class="top-right">
+		<span>Xin chào, <b>${sessionScope.account.fullName}</b></span> <a
+			href="${pageContext.request.contextPath}/logout" class="btn"> <i
+			class="fas fa-right-from-bracket"></i> Đăng xuất
+		</a>
+	</div>
+
+	<div class="welcome">
+		<h1 class="display-5 fw-bold">
+			Xin chào,
+			<c:out value="${sessionScope.account.fullName}" default="Khách" />
+		</h1>
+	</div>
+
 </body>
 </html>

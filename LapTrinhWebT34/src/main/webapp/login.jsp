@@ -132,7 +132,7 @@ body {
 					<label for="remember-me">Nhớ tôi</label>
 				</div>
 				<div class="forgot-password">
-					<a href="#">Quên mật khẩu?</a>
+					<a href="forget.jsp">Quên mật khẩu?</a>
 				</div>
 			</div>
 			<button type="submit" class="login-button">Đăng nhập</button>
