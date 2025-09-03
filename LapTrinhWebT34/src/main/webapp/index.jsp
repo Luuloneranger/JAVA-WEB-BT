@@ -11,7 +11,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Trang chủ</title>
-<!-- Font Awesome để dùng icon -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
@@ -48,14 +47,19 @@ body {
 	text-align: center;
 	font-size: 20px;
 }
+
+.actions {
+	margin-top: 30px;
+	text-align: center;
+}
 </style>
 </head>
 <body>
 
 	<div class="top-right">
-		<span>Xin chào, <b>${sessionScope.account.fullName}</b></span> <a
-			href="${pageContext.request.contextPath}/logout" class="btn"> <i
-			class="fas fa-right-from-bracket"></i> Đăng xuất
+		<span>Xin chào, <b>${sessionScope.account.fullName}</b></span>
+		<a href="${pageContext.request.contextPath}/logout" class="btn">
+			<i class="fas fa-right-from-bracket"></i> Đăng xuất
 		</a>
 	</div>
 
@@ -64,6 +68,12 @@ body {
 			Xin chào,
 			<c:out value="${sessionScope.account.fullName}" default="Khách" />
 		</h1>
+	</div>
+
+	<div class="actions">
+		<a href="${pageContext.request.contextPath}/list" class="btn">
+			<i class="fas fa-users"></i> Xem danh sách người dùng
+		</a>
 	</div>
 
 </body>

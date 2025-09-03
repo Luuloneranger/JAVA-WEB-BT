@@ -15,20 +15,21 @@ public class UserDaoImpl implements UserDao {
 	public ResultSet rs = null;
 
 	@Override
-	public UserModel get(String username) {
-		String sql = "SELECT * FROM [User_2] WHERE username = ? ";
+	public UserModel get(int id) {
+		String sql = "SELECT * FROM [User_2] WHERE id = ? ";
 		try {
 			conn = new DBContext().getConnection();
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, username);
+			ps.setInt(1, id);
 			rs = ps.executeQuery();
+			System.out.print("day la trong ham get");
+			System.out.println(id);
 			while (rs.next()) {
 				UserModel user = new UserModel();
 				user.setId(rs.getInt("id"));
 				user.setUserName(rs.getString("username"));
 				user.setFullName(rs.getString("fullname"));
 				user.setPassWord(rs.getString("password"));
-				System.out.println("DB return: " + user.getUserName() + " / " + user.getPassWord());
 				return user;
 			}
 		} catch (Exception e) {
@@ -39,14 +40,14 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void insert(UserModel user) {
-		String sql = "Insert Into [User_2](id,username,fullname,password) Values (?,?,?,?)";
+		String sql = "Insert Into [User_2](username,fullname,password) Values (?,?,?)";
 		try {
 			conn = new DBContext().getConnection();
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, user.getId());
-			ps.setString(2, user.getUserName());
-			ps.setString(3, user.getFullName());
-			ps.setString(4, user.getPassWord());
+			ps.setString(1, user.getUserName());
+			ps.setString(2, user.getFullName());
+			ps.setString(3, user.getPassWord());
+			
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,11 +99,12 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void edit(UserModel user) {
-		String query = "UPDATE [User_2] SET password = ?, fullname = ?  WHERE username = ?";
+		String query = "UPDATE [User_2] SET password = ?, fullname = ?, username = ? WHERE id = ?";
 		try {
 			conn = new DBContext().getConnection();
 			ps = conn.prepareStatement(query);
-
+			
+			ps.setInt(4, user.getId());
 			ps.setString(1, user.getPassWord());
 			ps.setString(2, user.getFullName());
 			ps.setString(3, user.getUserName());
@@ -119,18 +121,19 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<UserModel> getall() {
 		List<UserModel> Userr = new ArrayList<UserModel>();
-		String sql = "SELECT * FROM Category";
+		String sql = "SELECT * FROM [User_2]";
 		try {
 			conn = new DBContext().getConnection();
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				UserModel element = new UserModel();
+				element.setId(rs.getInt("id"));
 				element.setUserName(rs.getString("username"));
 				element.setFullName(rs.getString("fullname"));
 				element.setPassWord(rs.getString("password"));
-				
 				Userr.add(element);
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -146,18 +149,41 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void delete( String username) {
-		String query = "Delete from [User_2] where username = ? and id = ?";
+	public void delete(int id) {
+		String query = "Delete from [User_2] where id = ?";
 
 		try {
 			conn = new DBContext().getConnection();
 			ps = conn.prepareStatement(query);
-
-			ps.setString(1, username);
+			ps.setInt(1, id);
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
+
+	@Override
+	public UserModel get(String username) {
+		String sql = "SELECT * FROM [User_2] WHERE username = ? ";
+		try {
+			conn = new DBContext().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				UserModel user = new UserModel();
+				user.setId(rs.getInt("id"));
+				user.setUserName(rs.getString("username"));
+				user.setFullName(rs.getString("fullname"));
+				user.setPassWord(rs.getString("password"));
+				return user;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	
 }

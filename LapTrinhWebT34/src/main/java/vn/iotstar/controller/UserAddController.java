@@ -24,9 +24,6 @@ public class UserAddController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("addUser.jsp").forward(request, response);
 	}
@@ -40,7 +37,7 @@ public class UserAddController extends HttpServlet {
         String username = request.getParameter("username");
         String fullname = request.getParameter("fullname");
         String password = request.getParameter("password");
-
+        
         UserModel user = new UserModel();
         user.setUserName(username);
         user.setFullName(fullname);
@@ -48,9 +45,9 @@ public class UserAddController extends HttpServlet {
 
         userS.insert(user);
 
+        System.out.println(userS);
+        
         response.sendRedirect(request.getContextPath() + "/list");
-    
-		doGet(request, response);
 	}
 
 }

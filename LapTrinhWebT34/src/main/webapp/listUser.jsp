@@ -25,15 +25,13 @@
         <tbody>
             <c:forEach items="${userList}" var="user" varStatus="st">
                 <tr>
-                    <td>${st.index + 1}</td>
-                    <td><c:out value="${user.username}" /></td>
-                    <td><c:out value="${user.fullname}" /></td>
-                    <td><c:out value="${user.password}" /></td>
+                    <td>${user.id}</td>
+                    <td><c:out value="${user.userName}" /></td>
+                    <td><c:out value="${user.fullName}" /></td>
+                    <td><c:out value="${user.passWord}" /></td>
                     <td>
                         <a href="${pageContext.request.contextPath}/edit?id=${user.id}" class="btn btn-primary btn-sm">Sửa</a>
-                        <a href="${pageContext.request.contextPath}/delete?id=${user.id}" 
-                           class="btn btn-danger btn-sm"
-                           onclick="return confirm('Bạn có chắc muốn xóa user này không?')">Xóa</a>
+                        <a href="${pageContext.request.contextPath}/delete?id=${user.id}" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa user này không?')">Xóa</a>
                     </td>
                 </tr>
             </c:forEach>

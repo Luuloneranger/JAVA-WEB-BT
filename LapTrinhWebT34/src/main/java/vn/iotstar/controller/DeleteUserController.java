@@ -20,7 +20,7 @@ public class DeleteUserController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
+		int username = Integer.parseInt(request.getParameter("id"));
 		userS.delete(username);
 		response.sendRedirect(request.getContextPath() + "/list");
 	}

@@ -48,7 +48,8 @@ public class UserServiceImplement implements UserService {
 
 	@Override
 	public void edit(UserModel user) {
-		UserModel oldUser = userDao.get(user.getUserName());
+		UserModel oldUser = userDao.get(user.getId());
+		oldUser.setUserName(user.getUserName());
 		oldUser.setFullName(user.getFullName());
 		oldUser.setPassWord(user.getPassWord());
 		userDao.edit(oldUser);
@@ -57,13 +58,20 @@ public class UserServiceImplement implements UserService {
 
 
 	@Override
-	public void delete(String username) {
-		userDao.delete( username);
+	public void delete(int id) {
+		userDao.delete( id);
 	}
 
 
 	@Override
 	public List<UserModel> getall() {
 		return userDao.getall();
+	}
+
+
+	@Override
+	public UserModel get(int id) {
+		
+		return userDao.get(id);
 	}
 }

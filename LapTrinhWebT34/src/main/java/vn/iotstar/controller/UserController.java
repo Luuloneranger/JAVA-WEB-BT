@@ -23,7 +23,7 @@ public class UserController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<UserModel> userM = userS.getall();
-		request.setAttribute("userlist", userM);
+		request.setAttribute("userList", userM);
 		request.getRequestDispatcher("listUser.jsp").forward(request, response);
 	}
 

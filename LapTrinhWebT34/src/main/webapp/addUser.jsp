@@ -10,7 +10,7 @@
 <div class="container mt-4">
     <h2>Thêm người dùng mới</h2>
 
-    <form action="${pageContext.request.contextPath}/add" method="post">
+    <form action="add" method="post">
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" id="username" name="username" class="form-control" required>

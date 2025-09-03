@@ -38,9 +38,9 @@ public class UserEditController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String username = request.getParameter("username");
+		int username = Integer.parseInt(request.getParameter("id"));
 		UserModel userM = userS.get(username);
-		request.setAttribute("userM", userM);
+		request.setAttribute("user", userM);
 		request.getRequestDispatcher("editUser.jsp").forward(request, response);
 	}
 
@@ -72,22 +72,16 @@ public class UserEditController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 
+		System.out.println("rac");
 		int id = Integer.parseInt(request.getParameter("id"));
 		String username = request.getParameter("username");
 		String fullname = request.getParameter("fullname");
 		String password = request.getParameter("password");
 
-
-		UserModel user = new UserModel(id, username, fullname, password);
-
-
+		UserModel user = new UserModel(id,username,fullname,password);
 		userS.edit(user);
-
-
 		response.sendRedirect(request.getContextPath() + "/list");
 
-		
-		doGet(request, response);
 	}
 
 }
