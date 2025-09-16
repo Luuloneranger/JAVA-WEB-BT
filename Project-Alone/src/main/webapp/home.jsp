@@ -8,7 +8,7 @@ if (user == null) {
 	return;
 }
 
-List<Catogery> categories = (List<Catogery>) request.getAttribute("categories");
+List<Catogery> categories = (List<Catogery>) session.getAttribute("categories");
 %>
 <html>
 <head>

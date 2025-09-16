@@ -1,6 +1,6 @@
 package Luuloneranger.servlet;
 
-import Luuloneranger.entity.UserModel;
+import Luuloneranger.entity.*;
 import jakarta.persistence.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,6 +8,9 @@ import jakarta.servlet.http.*;
 import Luuloneranger.dao.*;
 
 import java.io.IOException;
+import java.util.List;
+
+import Luuloneranger.dao.*;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -24,18 +27,23 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         EntityManager em = emf.createEntityManager();
         UserDao ud = new UserDaoImpl(em);
+        CatogeryDao cd = new CatogeryDaoImpl(em);
         
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         
-
+        List<Catogery> list = cd.findAll();
+        System.out.print(list);
+        
+        
         try {
         	UserModel um = ud.findbyUsername(username);
         	if(username.equals(um.getUsername()) && password.equals(um.getPassword()))
         	{
             HttpSession session = req.getSession();
             session.setAttribute("user", um);
-            resp.sendRedirect(req.getContextPath() + "/HomeServlet");
+            session.setAttribute("categories", list);
+            resp.sendRedirect("home.jsp");
         	}
 
         } catch (NoResultException e) {
